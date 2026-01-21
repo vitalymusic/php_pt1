@@ -25,6 +25,18 @@ $menu = [
 if( !$web_page_enabled){
     die("Lapa ir deaktivizēta");
 }
+
+
+
+function showFooter(string $date,string $text){
+        echo "
+        <footer>
+            <h3 style=\"text-align:center\">{$text}</h3>
+            <p style=\"text-align:center\">{$date}</p>
+        </footer>
+        ";
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,18 +48,33 @@ if( !$web_page_enabled){
 </head>
 <body>
     <header>
+        <nav>
+            <?php 
+                foreach($menu as $item){
+                   echo "<a href=\"{$item["href"]}\">{$item["title"]}</a>";     
+
+                } 
+            ?>
+        </nav>
+
+        <select name="" id="">
+            <option value="">---</option>
+            <?php 
+                foreach($list as $item){
+                    echo "<option value=\"{$item}\">{$item}</option>";
+                    //echo "<option value=\"" . $item . "\">" . $item . "</option>";
+                }
+            
+            ?>    
+
+        </select>
         <h1><?php echo $title?></h1>
     </header>
 
     <main>
 
     </main>
-    <footer>
-        <?= $year?>
-
-
-
-    </footer>
+    <?php showFooter("21.01.2026","Mana jaunā lapa")?>
     
 
 
