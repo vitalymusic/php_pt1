@@ -1,0 +1,5 @@
+1. Pievienot sadaļu users
+2. Ar Javascript veikt datu nolasi no api.php?users=all
+3. Izvadīt lietotājus Tabulas veidā. 
+
+(Vanilla js, Jquery);
