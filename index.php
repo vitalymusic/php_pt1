@@ -1,82 +1,39 @@
 <?php 
-// php tegs
-$title  = (string) "Mācos PHP";
-define("USER","vitaly");
-$year = 2026;
-$web_page_enabled = true; //boolean
-
-$list = ["Pirmais", "Otrais","Trešais"]; //Parastais masīvs
-
-$menu = [
-    [
-        "title"=>"Lapas nosaukunms",
-        "href"=>"page.php",
-        "img"=>"test.jpg"
-    ],
-    [
-        "title"=>"Lapas nosaukums 2",
-        "href"=>"page2.php",
-        "img"=>"test2.jpg"
-    ]
-];
-
-
-
-if( !$web_page_enabled){
-    die("Lapa ir deaktivizēta");
-}
-
-
-
-function showFooter(string $date,string $text){
-        echo "
-        <footer>
-            <h3 style=\"text-align:center\">{$text}</h3>
-            <p style=\"text-align:center\">{$date}</p>
-        </footer>
-        ";
-
-}
+include_once("settings.php");
+require_once("header.php");
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title?></title>
-</head>
-<body>
-    <header>
-        <nav>
-            <?php 
-                foreach($menu as $item){
-                   echo "<a href=\"{$item["href"]}\">{$item["title"]}</a>";     
-
-                } 
-            ?>
-        </nav>
-
-        <select name="" id="">
-            <option value="">---</option>
-            <?php 
-                foreach($list as $item){
-                    echo "<option value=\"{$item}\">{$item}</option>";
-                    //echo "<option value=\"" . $item . "\">" . $item . "</option>";
-                }
-            
-            ?>    
-
-        </select>
-        <h1><?php echo $title?></h1>
-    </header>
-
     <main>
+        <?php 
+        if(!isset($_GET["page"])){
+             $_GET["page"] = 1;
+        }
+        ?>
+
+        <!-- galvenā lapa -->
+        <?php if($_GET["page"]==1):?>
+            <h1>Galvenā lapa</h1>
+            <p>te būs teksts par galveno lapu</p>
+
+            <script>
+                alert("");
+            </script>
+        <?php endif;?>    
+
+
+        <!-- Par mums -->
+        <?php if($_GET["page"]==2):?>
+            <h1>Par mums</h1>
+            <p>te būs teksts par mums</p>
+        <?php endif;?>    
+
+        <!-- Kontakti -->
+        <?php if($_GET["page"]==3):?>
+            <h1>Kontakti</h1>
+            <p>Kontakti</p>
+        <?php endif;?>    
+
 
     </main>
-    <?php showFooter("21.01.2026","Mana jaunā lapa")?>
     
-
-
-</body>
-</html>
+    <?php include("footer.php"); ?>
+    
