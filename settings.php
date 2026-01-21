@@ -23,6 +23,11 @@ $menu = [
         "href"=>"./3",
         "img"=>"contacts.jpg"
     ],
+    [
+        "title"=>"Users",
+        "href"=>"./4",
+        "img"=>"users.jpg"
+    ],
 ];
 
 

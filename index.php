@@ -38,6 +38,52 @@ require_once("header.php");
         <?php if($_GET["page"]==3):?>
             <h1>Kontakti</h1>
             <p>Kontakti</p>
+        <?php endif;?>   
+
+        <?php if($_GET["page"]==4):?>
+            <h1>Lietotāji</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Lietotājvārds</td>
+                        <td>Epasts</td>
+                        <td>Loma</td>
+                        <td>Aktīvs</td>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+                
+
+
+                
+            </table>
+
+            <script>
+                let html = '';    
+
+                fetch("./api.php?users=all")
+                    .then((data)=>{return data.json()})
+                    .then((json)=>{
+
+                        json.forEach((item)=>{
+                            html+=`
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.username}</td>
+                                    <td>${item.email}</td>
+                                    <td>${item.role}</td>
+                                    <td >${item.active ? 'Active' : 'Inactive'}</td>
+                                </tr>
+                            `;
+                        })
+                        document.querySelector("tbody").innerHTML +=html;
+                        
+                    })
+            </script>
+
         <?php endif;?>    
 
 

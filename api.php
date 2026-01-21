@@ -10,7 +10,6 @@
     ['id' => 8,  'username' => 'user07',  'email' => 'user07@example.com',  'role' => 'user',          'active' => true],
     ['id' => 9,  'username' => 'user08',  'email' => 'user08@example.com',  'role' => 'user',          'active' => false],
     ['id' => 10, 'username' => 'user09',  'email' => 'user09@example.com',  'role' => 'editor',        'active' => true],
-
     ['id' => 11, 'username' => 'user10',  'email' => 'user10@example.com',  'role' => 'user',          'active' => true],
     ['id' => 12, 'username' => 'user11',  'email' => 'user11@example.com',  'role' => 'user',          'active' => true],
     ['id' => 13, 'username' => 'user12',  'email' => 'user12@example.com',  'role' => 'moderator',     'active' => false],
@@ -20,21 +19,22 @@
     ['id' => 17, 'username' => 'user16',  'email' => 'user16@example.com',  'role' => 'user',          'active' => false],
     ['id' => 18, 'username' => 'user17',  'email' => 'user17@example.com',  'role' => 'user',          'active' => true],
     ['id' => 19, 'username' => 'user18',  'email' => 'user18@example.com',  'role' => 'moderator',     'active' => true],
-    ['id' => 20, 'username' => 'user19',  'email' => 'user19@example.com',  'role' => 'user',          'active' => true],
+    ['id' => 20, 'username' => 'user19',  'email' => 'user19@example.com',  'role' => 'user',          'active' => true]
 ];
 
 
     // GET parametri
     if(isset($_GET["users"]) && $_GET["users"]=="all"){
+        header('Content-Type: application/json; charset=utf-8');
         $data = json_encode($users,JSON_UNESCAPED_UNICODE );
         echo $data;
-
+        exit;
     }
 
     if(isset($_GET["users"])){
-        $sliced_users = array_splice($users,0,$_GET["users"]);
+        $sliced_users = array_splice($users,0,(int) $_GET["users"]);
         echo json_encode($sliced_users,JSON_UNESCAPED_UNICODE );
-
+         exit;
 
     }
 
@@ -50,7 +50,7 @@
            });
 
            echo json_encode( $result,JSON_UNESCAPED_UNICODE );
-
+            exit;
     }
 
 
