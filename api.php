@@ -1,5 +1,5 @@
 <?php
-    $users = [
+ $users = [
     ['id' => 1,  'username' => 'admin',   'email' => 'admin@example.com',   'role' => 'administrator', 'active' => true],
     ['id' => 2,  'username' => 'user01',  'email' => 'user01@example.com',  'role' => 'user',          'active' => true],
     ['id' => 3,  'username' => 'user02',  'email' => 'user02@example.com',  'role' => 'user',          'active' => true],
@@ -26,8 +26,8 @@
 
     // GET parametri
     if(isset($_GET["users"]) && $_GET["users"]=="all"){
-
-
+        $data = json_encode($users,JSON_UNESCAPED_UNICODE );
+        echo $data;
 
     }
 
