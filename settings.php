@@ -10,17 +10,17 @@ $list = ["Pirmais", "Otrais","Trešais"]; //Parastais masīvs
 $menu = [
     [
         "title"=>"Galvenā",
-        "href"=>"?page=1",
+        "href"=>"./1",
         "img"=>"test.jpg"
     ],
     [
         "title"=>"Par mums",
-        "href"=>"?page=2",
+        "href"=>"./2",
         "img"=>"about.jpg"
     ],
     [
         "title"=>"Kontakti",
-        "href"=>"?page=3",
+        "href"=>"./3",
         "img"=>"contacts.jpg"
     ],
 ];
