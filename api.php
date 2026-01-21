@@ -31,6 +31,29 @@
 
     }
 
+    if(isset($_GET["users"])){
+        $sliced_users = array_splice($users,0,$_GET["users"]);
+        echo json_encode($sliced_users,JSON_UNESCAPED_UNICODE );
+
+
+    }
+
+    // nofiltrēt masīvu pēc id
+
+    if(isset($_GET["user_id"])){
+           $result =  array_filter($users,function($item){
+                if($item["id"]==$_GET["user_id"]){
+                    return $item;
+                }else{
+                    return null;
+                }
+           });
+
+           echo json_encode( $result,JSON_UNESCAPED_UNICODE );
+
+    }
+
+
 
 
 ?>
