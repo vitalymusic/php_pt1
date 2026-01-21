@@ -7,13 +7,21 @@ require_once("header.php");
         if(!isset($_GET["page"])){
              $_GET["page"] = 1;
         }
+
+
+        if(isset($_GET["page_type"]) && $_GET["page_type"]=="front" ){
+            $className = "front";
+        }else{
+            $className = "normal";
+        }
         ?>
 
         <!-- galvenā lapa -->
         <?php if($_GET["page"]==1):?>
-            <h1>Galvenā lapa</h1>
-            <p>te būs teksts par galveno lapu</p>
-
+           <section class="<?=$className?>">
+                <h1>Galvenā lapa</h1>
+                <p>te būs teksts par galveno lapu</p>
+            </section> 
             <script>
                 alert("");
             </script>
