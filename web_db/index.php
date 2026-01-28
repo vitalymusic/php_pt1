@@ -2,6 +2,16 @@
     include "functions.php";
 
 ?>
+    
+  <?php 
+        //   Lapas satura ielāde pēc id
+
+        if(isset($_GET["page"])){
+              $data = getPageById($_GET["page"]);
+        }else{
+            $data = getPageById(1);
+        }
+      ?>
 
 <!DOCTYPE html>
 <html lang="lv">
@@ -28,18 +38,13 @@
     </nav>
 
     <main>
-       
-        <?php 
+        <?php //print_r($data)?>  
 
-        if(isset($_GET["page"])){
-              $data = getPageById($_GET["page"]);
-        }else{
-            $data = getPageById(1);
-        }
+        <h1><?=$data["page_name"]?></h1>
 
-         var_dump($data);
-      ?>
-
+        <div class="container">
+            <?= $data["page_content"]?>
+        </div>
 
 
 
