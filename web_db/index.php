@@ -1,6 +1,6 @@
 <?php 
     include "functions.php";
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,40 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <title>Lapa</title>
 </head>
+
 <body>
+
+    <nav>
+        <?php 
+            // var_dump(getNavigation());
+            $menu = getNavigation();
+             
+                foreach($menu as $item){
+                   echo "<a href=\"?page={$item["page_id"]}\">{$item["menu_icon"]} {$item["menu_name"]}</a>";     
+                } 
+        
+        ?>
+    </nav>
+
+    <main>
+       
+        <?php 
+
+        if(isset($_GET["page"])){
+              $data = getPageById($_GET["page"]);
+        }else{
+            $data = getPageById(1);
+        }
+
+         var_dump($data);
+      ?>
+
+
+
+
+    </main>
+
+
     
 </body>
 </html>
