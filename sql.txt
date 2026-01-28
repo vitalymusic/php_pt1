@@ -1,0 +1,7 @@
+INSERT INTO `menu`( `menu_name`, `menu_url`, `menu_icon`, `menu_enabled`) 
+VALUES 
+    ('Galvenā','main.php','<i class="bi bi-person-circle"></i>','true'),
+    ('Par mums','about.php','<i class="bi bi-person-vcard"></i>','true'),
+    ('Pakalpojumi','services.php','<i class="bi bi-person-circle"></i>','true'),
+    ('Kontakti','contacts.php','<i class="bi bi-person-circle"></i>','true'),
+    ('Personīgais kabinets','user.php','<i class="bi bi-person-fill-gear"></i>','true')
