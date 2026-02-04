@@ -10,6 +10,7 @@
               $data = getPageById($_GET["page"]);
         }else{
             $data = getPageById(1);
+            $_GET["page"]=1;
         }
       ?>
 
