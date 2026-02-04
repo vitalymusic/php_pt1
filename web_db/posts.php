@@ -12,7 +12,7 @@ $postsData = getPosts();
             <div class="comments" data-post_id="<?=$post["id"]?>">
 
             </div>
-            <div class="add_comment_form d-none">
+            <div class="add_comment_form">
                 <form action="" >
                     <input type="hidden" name="post_id" value="<?=$post["id"]?>">
                     <input type="text" name="comment_name" id="name<?=$post["id"]?>">
@@ -24,9 +24,44 @@ $postsData = getPosts();
     <?php endforeach; ?>
 
     <script>
+        
+        const loadAllComments = ()=>{
             // functions.php?action=getComments&postId=1
+            let commentsDivs = document.querySelectorAll(".comments");
+            for(let commentDiv of commentsDivs){
+                const postId = commentDiv.dataset.post_id;
+                fetch(`functions.php?action=getComments&postId=${postId}`)
+                    .then((data)=>{return data.json()})
+                    .then((comments)=>{
+                            comments.forEach((item)=>{
+                                  commentDiv.innerHTML+=`
+                                        <h3>${item.comment_name}</h3>
+                                        <p>${item.comment_content}</p>
+                                  `;  
+                            })
+                    })
+            }
 
-            
+    }
+
+      loadAllComments();
+
+
+      const forms = document.querySelectorAll('form');
+
+      for( form of forms){
+        form.onsubmit = (e)=>{
+            e.preventDefault();
+            fetch('functions.php?action=saveComment',{
+                method:"POST",
+                body: new FormData(e.target)
+            })
+            .then((resp)=>{return resp.json})
+            .then((data)=>{console.log(data)})
+        }
+
+      }
+
 
     </script>
 </div>

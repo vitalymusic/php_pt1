@@ -98,6 +98,26 @@ global $conn;
 }
 
 
+function saveComment($data){
+
+    global $conn;
+     $sql = "INSERT INTO `comments`( `comment_name`, `comment_content`, `post_id`) VALUES ('{$data["comment_name"]}','{$data["comment_content"]}','{$data["post_id"]}')";
+
+     
+     $result = $conn->query($sql);
+      if($result){
+         header('Content-Type: application/json; charset=utf-8');
+         echo json_encode(["success"=>true],JSON_UNESCAPED_UNICODE);
+         exit();
+      } else{
+         header('Content-Type: application/json; charset=utf-8');
+         echo json_encode(["error"=>$conn->error],JSON_UNESCAPED_UNICODE);
+      } 
+
+
+}
+
+
 
 
 ?>
