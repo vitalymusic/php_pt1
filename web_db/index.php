@@ -70,9 +70,16 @@
 
         <h1><?=$data["page_name"]?></h1>
 
-        <div class="container">
-            <?= $data["page_content"]?>
-        </div>
+        <?php if($_GET["page"]==5){
+            include("posts.php");
+        }else{
+            echo "
+                <div class=\"container\">
+                    {$data["page_content"]}
+                </div>
+            ";
+        } ?>
+        
 
 
 
