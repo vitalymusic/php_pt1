@@ -11,6 +11,15 @@ if(isset($_GET["action"])){
     }
 
 
+    if($_GET["action"]=="saveComment" && isset($_POST)){
+            saveComment($_POST);
+     }
+
+
+
+
+
+
 
 
 
@@ -100,20 +109,45 @@ global $conn;
 
 function saveComment($data){
 
-    global $conn;
-     $sql = "INSERT INTO `comments`( `comment_name`, `comment_content`, `post_id`) VALUES ('{$data["comment_name"]}','{$data["comment_content"]}','{$data["post_id"]}')";
+global $conn;
 
-     
-     $result = $conn->query($sql);
-      if($result){
-         header('Content-Type: application/json; charset=utf-8');
-         echo json_encode(["success"=>true],JSON_UNESCAPED_UNICODE);
-         exit();
-      } else{
-         header('Content-Type: application/json; charset=utf-8');
-         echo json_encode(["error"=>$conn->error],JSON_UNESCAPED_UNICODE);
-      } 
+header('Content-Type: application/json; charset=utf-8');
 
+try {
+    // Ieslēdzam exception režīmu MySQLi
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+    // Sagatavojam SQL vaicājumu
+    $stmt = $conn->prepare(
+        "INSERT INTO comments (comment_name, comment_content, post_id)
+         VALUES (?, ?, ?)"
+    );
+
+    // Piesaistām parametrus
+    $stmt->bind_param(
+        "ssi",
+        $data["comment_name"],
+        $data["comment_content"],
+        $data["post_id"]
+    );
+
+    // Izpildām vaicājumu
+    $stmt->execute();
+
+    echo json_encode(
+        ["success" => true],
+        JSON_UNESCAPED_UNICODE
+    );
+    exit();
+
+} catch (mysqli_sql_exception $e) {
+
+    http_response_code(500);
+    echo json_encode(
+        ["error" => $e->getMessage()],
+        JSON_UNESCAPED_UNICODE
+    );
+}
 
 }
 
